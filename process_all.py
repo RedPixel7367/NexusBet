@@ -10,12 +10,24 @@ with open(head_file, "r", encoding="utf-8") as f:
 head_soup = BeautifulSoup(head_html, "html.parser")
 head_tag = head_soup.find("head")
 
-raw_files = glob.glob(os.path.join(target_dir, "raw_*.html"))
+raw_files = glob.glob(os.path.join(target_dir, "raw_*.html")) + glob.glob(os.path.join(target_dir, "games", "raw_*.html"))
+
+if not raw_files:
+    print("No raw_*.html files found!")
+    exit()
 
 for raw_file in raw_files:
     basename = os.path.basename(raw_file)
     target_filename = basename.replace("raw_", "")
-    out_file = os.path.join(target_dir, target_filename)
+    
+    is_game = "games" in raw_file.replace("\\", "/")
+    if is_game:
+        out_file = os.path.join(target_dir, "games", target_filename)
+        prefix = "../"
+    else:
+        out_file = os.path.join(target_dir, target_filename)
+        prefix = ""
+    
     
     with open(raw_file, "r", encoding="utf-8") as f:
         file_html = f.read()
@@ -43,8 +55,8 @@ for raw_file in raw_files:
     if preloader:
         preloader.decompose()
 
-    if soup.head and not soup.find("link", href="styles.css"):
-        style_link = soup.new_tag("link", rel="stylesheet", href="styles.css")
+    if soup.head and not soup.find("link", href="styles.css") and not soup.find("link", href="../styles.css"):
+        style_link = soup.new_tag("link", rel="stylesheet", href=prefix + "styles.css")
         soup.head.append(style_link)
 
     for img in soup.find_all("img"):
@@ -61,9 +73,9 @@ for raw_file in raw_files:
         href = a.get("href")
         if href:
             if href == "/":
-                a["href"] = "dashboard.html"
+                a["href"] = prefix + "dashboard.html"
             elif href.startswith("/") and not href.startswith("//"):
-                a["href"] = href[1:].replace("/", "_") + ".html"
+                a["href"] = prefix + href[1:].replace("/", "_") + ".html"
                 
     # Connect sidebar buttons
     button_mapping = {
@@ -92,7 +104,7 @@ for raw_file in raw_files:
         text_div = nav.find("div", class_="Side_navText__QY6zP")
         if text_div and text_div.text in button_mapping:
             nav.name = "a"
-            nav["href"] = button_mapping[text_div.text]
+            nav["href"] = prefix + button_mapping[text_div.text]
             nav["style"] = "text-decoration: none; color: inherit; display: flex; cursor: pointer;"
             
     # Fix top buttons (Games/Slots)
@@ -100,7 +112,7 @@ for raw_file in raw_files:
         span = top_btn.find("span")
         if span and span.text in button_mapping:
             top_btn.name = "a"
-            top_btn["href"] = button_mapping[span.text]
+            top_btn["href"] = prefix + button_mapping[span.text]
             top_btn["style"] = "text-decoration: none; color: inherit; display: flex; cursor: pointer;"
 
     # Fix profile sub-navigation buttons
@@ -108,13 +120,13 @@ for raw_file in raw_files:
         span = profile_nav.find("span")
         if span and span.text in button_mapping:
             profile_nav.name = "a"
-            profile_nav["href"] = button_mapping[span.text]
+            profile_nav["href"] = prefix + button_mapping[span.text]
             profile_nav["style"] = "text-decoration: none; color: inherit; display: flex; cursor: pointer;"
 
     # Fix Logout button
     for logout_btn in soup.find_all("div", class_="Profile_logout__xJo32"):
         logout_btn.name = "a"
-        logout_btn["href"] = "index.html"
+        logout_btn["href"] = prefix + "index.html"
         logout_btn["onclick"] = "localStorage.clear(); sessionStorage.clear();"
         logout_btn["style"] = logout_btn.get("style", "") + " text-decoration: none; color: inherit; display: flex; cursor: pointer; align-items: center; justify-content: center;"
 
@@ -129,7 +141,7 @@ for raw_file in raw_files:
                 
         if btn_text in button_mapping:
             btn.name = "a"
-            btn["href"] = button_mapping[btn_text]
+            btn["href"] = prefix + button_mapping[btn_text]
             btn["style"] = btn.get("style", "") + " text-decoration: none; color: inherit; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;"
 
     # Fix Deposit Tabs (Crypto vs Fiat)
@@ -138,11 +150,11 @@ for raw_file in raw_files:
         if span:
             if "Bank Card" in span.text:
                 method_tab.name = "a"
-                method_tab["href"] = "profile_deposit_fiat.html"
+                method_tab["href"] = prefix + "profile_deposit_fiat.html"
                 method_tab["style"] = method_tab.get("style", "") + " text-decoration: none; color: inherit; display: flex; cursor: pointer;"
             elif "Crypto" in span.text:
                 method_tab.name = "a"
-                method_tab["href"] = "profile_deposit.html"
+                method_tab["href"] = prefix + "profile_deposit.html"
                 method_tab["style"] = method_tab.get("style", "") + " text-decoration: none; color: inherit; display: flex; cursor: pointer;"
 
     final_html = str(soup)
