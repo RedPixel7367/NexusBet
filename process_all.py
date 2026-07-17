@@ -18,9 +18,13 @@ for raw_file in raw_files:
     out_file = os.path.join(target_dir, target_filename)
     
     with open(raw_file, "r", encoding="utf-8") as f:
-        body_html = f.read()
+        file_html = f.read()
 
-    combined_html = f"<!DOCTYPE html><html translate='no'>{str(head_tag)}{body_html}</html>"
+    if "<head>" in file_html.lower() or "<head " in file_html.lower():
+        combined_html = file_html
+    else:
+        combined_html = f"<!DOCTYPE html><html translate='no'>{str(head_tag)}{file_html}</html>"
+        
     soup = BeautifulSoup(combined_html, "html.parser")
 
     for s in soup.find_all("script"):
@@ -34,7 +38,7 @@ for raw_file in raw_files:
     if preloader:
         preloader.decompose()
 
-    if not soup.find("link", href="styles.css"):
+    if soup.head and not soup.find("link", href="styles.css"):
         style_link = soup.new_tag("link", rel="stylesheet", href="styles.css")
         soup.head.append(style_link)
 
@@ -101,6 +105,20 @@ for raw_file in raw_files:
             profile_nav.name = "a"
             profile_nav["href"] = button_mapping[span.text]
             profile_nav["style"] = "text-decoration: none; color: inherit; display: flex; cursor: pointer;"
+
+    # Fix header <button> elements (Home, Profile, Bonuses, VIP, Deposit)
+    for btn in soup.find_all("button"):
+        btn_text = btn.text.strip()
+        # For the deposit button, it might just be "Deposit" or nested
+        if not btn_text:
+            span = btn.find("span")
+            if span:
+                btn_text = span.text.strip()
+                
+        if btn_text in button_mapping:
+            btn.name = "a"
+            btn["href"] = button_mapping[btn_text]
+            btn["style"] = btn.get("style", "") + " text-decoration: none; color: inherit; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;"
 
     with open(out_file, "w", encoding="utf-8") as f:
         f.write(str(soup))
