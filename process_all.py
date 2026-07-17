@@ -142,14 +142,20 @@ for raw_file in raw_files:
     
     js_snippet = """
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+(function() {
     // Dropdown toggle logic
     const dropdowns = document.querySelectorAll(".Dropdown2_main__oaGd2");
     dropdowns.forEach(dropdown => {
         const input = dropdown.querySelector(".Dropdown2_input__c_MRs");
         const menu = dropdown.querySelector(".Dropdown2_dropdown__ULp_Y");
         if (input && menu) {
-            menu.style.display = "none"; // Hide by default
+            // Force hidden and absolute positioning initially
+            menu.style.display = "none";
+            menu.style.position = "absolute";
+            menu.style.zIndex = "9999";
+            menu.style.width = "100%";
+            menu.style.opacity = "1";
+            menu.style.visibility = "visible";
             
             input.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -183,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", () => {
         document.querySelectorAll(".Dropdown2_dropdown__ULp_Y").forEach(m => m.style.display = "none");
     });
-});
+})();
 </script>
 </body>
 """
