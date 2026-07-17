@@ -921,18 +921,55 @@ main {
     align-items: center;
 }
 
-.promo-ribbon {
+.exclusive-ribbon {
     position: absolute;
-    right: -30px; top: 20px;
-    background: #3b82f6; color: #fff;
-    font-size: 10px; font-weight: 700;
-    padding: 5px 30px;
-    transform: rotate(45deg);
+    top: 0; right: 0;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    object-position: top right;
 }
 
-.promo-icon {
-    width: 80px; height: auto; margin-right: 0;
+.gift-container {
+    position: relative;
+    width: 120px;
+    height: 90px;
+    margin-right: 20px;
 }
+
+.gift-box-large {
+    position: absolute;
+    width: 85px;
+    bottom: 0;
+    left: 10px;
+    transform: rotate(-12deg);
+    z-index: 2;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+.gift-box-small {
+    position: absolute;
+    width: 35px;
+    top: 0;
+    right: 15px;
+    transform: rotate(15deg);
+    z-index: 1;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4)) brightness(0.85);
+}
+
+.sparkle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px rgba(255,255,255,0.5);
+    z-index: 0;
+}
+
+.sparkle.s1 { top: 25px; left: 5px; }
+.sparkle.s2 { bottom: 15px; right: 5px; }
+.sparkle.s3 { top: 15px; right: 25px; width: 1px; height: 1px; }
 
 .visa-icon-bg {
     width: 90px;
