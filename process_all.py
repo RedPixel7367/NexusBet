@@ -125,6 +125,70 @@ for raw_file in raw_files:
             btn["href"] = button_mapping[btn_text]
             btn["style"] = btn.get("style", "") + " text-decoration: none; color: inherit; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;"
 
+    # Fix Deposit Tabs (Crypto vs Fiat)
+    for method_tab in soup.find_all("div", class_="WalletProfile_method__ipfA0"):
+        span = method_tab.find("span")
+        if span:
+            if "Bank Card" in span.text:
+                method_tab.name = "a"
+                method_tab["href"] = "profile_deposit_fiat.html"
+                method_tab["style"] = method_tab.get("style", "") + " text-decoration: none; color: inherit; display: flex; cursor: pointer;"
+            elif "Crypto" in span.text:
+                method_tab.name = "a"
+                method_tab["href"] = "profile_deposit.html"
+                method_tab["style"] = method_tab.get("style", "") + " text-decoration: none; color: inherit; display: flex; cursor: pointer;"
+
+    final_html = str(soup)
+    
+    js_snippet = """
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Dropdown toggle logic
+    const dropdowns = document.querySelectorAll(".Dropdown2_main__oaGd2");
+    dropdowns.forEach(dropdown => {
+        const input = dropdown.querySelector(".Dropdown2_input__c_MRs");
+        const menu = dropdown.querySelector(".Dropdown2_dropdown__ULp_Y");
+        if (input && menu) {
+            menu.style.display = "none"; // Hide by default
+            
+            input.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const isVisible = menu.style.display === "block";
+                
+                // Close any open menus
+                document.querySelectorAll(".Dropdown2_dropdown__ULp_Y").forEach(m => m.style.display = "none");
+                
+                if (!isVisible) {
+                    menu.style.display = "block";
+                }
+            });
+            
+            // Handle option selection
+            const options = menu.querySelectorAll(".Dropdown2_dropdownEl__tTIhL");
+            options.forEach(opt => {
+                opt.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    const optContent = opt.querySelector(".Dropdown2_contentIn__kRnA_");
+                    const inputContent = input.querySelector(".Dropdown2_contentIn__kRnA_");
+                    if (optContent && inputContent) {
+                        inputContent.innerHTML = optContent.innerHTML;
+                    }
+                    menu.style.display = "none";
+                });
+            });
+        }
+    });
+    
+    // Close dropdowns when clicking anywhere else on the page
+    document.addEventListener("click", () => {
+        document.querySelectorAll(".Dropdown2_dropdown__ULp_Y").forEach(m => m.style.display = "none");
+    });
+});
+</script>
+</body>
+"""
+    final_html = final_html.replace("</body>", js_snippet)
+
     with open(out_file, "w", encoding="utf-8") as f:
-        f.write(str(soup))
+        f.write(final_html)
     print(f"Processed {basename} -> {target_filename}")
