@@ -54,9 +54,54 @@ for raw_file in raw_files:
             if href == "/":
                 a["href"] = "dashboard.html"
             elif href.startswith("/") and not href.startswith("//"):
-                # Turn "/profile/bonuses" into "profile_bonuses.html"
                 a["href"] = href[1:].replace("/", "_") + ".html"
+                
+    # Connect sidebar buttons
+    button_mapping = {
+        "Home": "dashboard.html",
+        "Profile": "profile.html",
+        "Live Support": "#",
+        "Deposit": "profile_deposit.html",
+        "Withdraw": "profile_withdraw.html",
+        "VIP-Club": "vip.html",
+        "About Us": "about-us.html",
+        "Promotions": "promotions.html",
+        "Sponsorships": "sponsorships.html",
+        "Licenses & Security": "licenses-security.html",
+        "Feedback About Us": "feedback.html",
+        "News": "news.html",
+        "Games": "original-games.html",
+        "Slots": "licensed-slots.html",
+        "Verification": "profile_verification.html",
+        "Settings": "profile_settings.html",
+        "Transactions": "profile_transactions.html",
+        "Bonuses": "profile_bonuses.html"
+    }
+    
+    # Fix sidebar buttons
+    for nav in soup.find_all("div", class_="Side_nav__TUWgM"):
+        text_div = nav.find("div", class_="Side_navText__QY6zP")
+        if text_div and text_div.text in button_mapping:
+            nav.name = "a"
+            nav["href"] = button_mapping[text_div.text]
+            nav["style"] = "text-decoration: none; color: inherit; display: flex; cursor: pointer;"
             
+    # Fix top buttons (Games/Slots)
+    for top_btn in soup.find_all("div", class_="Side_topButton__vCSZN"):
+        span = top_btn.find("span")
+        if span and span.text in button_mapping:
+            top_btn.name = "a"
+            top_btn["href"] = button_mapping[span.text]
+            top_btn["style"] = "text-decoration: none; color: inherit; display: flex; cursor: pointer;"
+
+    # Fix profile sub-navigation buttons
+    for profile_nav in soup.find_all("div", class_="Profile_switchEl__X_7nG"):
+        span = profile_nav.find("span")
+        if span and span.text in button_mapping:
+            profile_nav.name = "a"
+            profile_nav["href"] = button_mapping[span.text]
+            profile_nav["style"] = "text-decoration: none; color: inherit; display: flex; cursor: pointer;"
+
     with open(out_file, "w", encoding="utf-8") as f:
         f.write(str(soup))
     print(f"Processed {basename} -> {target_filename}")
