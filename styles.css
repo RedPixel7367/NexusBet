@@ -327,7 +327,12 @@ main {
 
 .card-content {
     z-index: 2;
-    max-width: 60%;
+    position: relative;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .game-card h2 {
@@ -346,37 +351,34 @@ main {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 45%;
-    height: 120%;
-    z-index: 2;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .card-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: left;
-    mask-image: linear-gradient(to right, transparent, black 20%);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+    object-position: center;
 }
 
 .glow-effect {
     position: absolute;
-    bottom: -50px;
+    bottom: 0;
     left: 0;
     right: 0;
-    height: 100px;
-    filter: blur(50px);
+    height: 40%;
     z-index: 1;
-    opacity: 0.15;
 }
 
 .glow-green {
-    background-color: var(--primary-green);
+    background: linear-gradient(to top, rgba(0,231,117,0.4), transparent);
 }
 
 .glow-blue {
-    background-color: #3b82f6;
+    background: linear-gradient(to top, rgba(59,130,246,0.4), transparent);
 }
 
 /* MODAL */
