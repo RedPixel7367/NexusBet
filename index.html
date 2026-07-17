@@ -242,6 +242,9 @@
         </div>
     </div>
 
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script>
         const modal = document.getElementById('auth-modal');
         const btnLogins = document.querySelectorAll('.btn-login');
@@ -270,6 +273,11 @@
             else el.type = 'password';
         }
 
+        // Supabase Initialization
+        const supabaseUrl = 'https://hzvlxpmkoefghsmfsvmo.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dmx4cG1rb2VmZ2hzbWZzdm1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyNzg3MzgsImV4cCI6MjA5OTg1NDczOH0.aBAEXlRuE6X0Xphr5KwRGBpWAql0lc6v73CdSw3g6OE';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
         // Handle Login
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -280,21 +288,16 @@
             const errDiv = document.getElementById('login-error');
             errDiv.textContent = '';
             
-            try {
-                const res = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-                const data = await res.json();
-                if (!res.ok) {
-                    errDiv.textContent = data.error || 'Login failed';
-                } else {
-                    alert('Logged in successfully!');
-                    closeModal();
-                }
-            } catch (err) {
-                errDiv.textContent = 'Network error. Make sure Vercel Postgres is connected.';
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+            });
+
+            if (error) {
+                errDiv.textContent = error.message;
+            } else {
+                alert('Logged in successfully!');
+                closeModal();
             }
             btn.textContent = 'Log In';
         });
@@ -315,21 +318,17 @@
             }
             
             btn.textContent = 'Loading...';
-            try {
-                const res = await fetch('/api/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-                const data = await res.json();
-                if (!res.ok) {
-                    errDiv.textContent = data.error || 'Registration failed';
-                } else {
-                    alert('Registered successfully!');
-                    switchView('login');
-                }
-            } catch (err) {
-                errDiv.textContent = 'Network error. Make sure Vercel Postgres is connected.';
+            
+            const { data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+            });
+
+            if (error) {
+                errDiv.textContent = error.message;
+            } else {
+                alert('Registered successfully!');
+                switchView('login');
             }
             btn.textContent = 'Create Account';
         });
