@@ -2,7 +2,7 @@ import { createPool } from '@vercel/postgres';
 import bcrypt from 'bcryptjs';
 
 const pool = createPool({
-    connectionString: process.env.STORAGE_POSTGRES_URL
+    connectionString: process.env.STORAGE_POSTGRES_URL_NON_POOLING
 });
 
 export default async function handler(req, res) {
@@ -29,6 +29,6 @@ export default async function handler(req, res) {
         return res.status(200).json({ message: 'Login successful' });
     } catch (error) {
         console.error('Login error:', error);
-        return res.status(500).json({ error: 'Database error. Make sure Vercel Postgres is connected.' });
+        return res.status(500).json({ error: 'Database error.', details: error.message });
     }
 }

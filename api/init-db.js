@@ -1,7 +1,7 @@
 import { createPool } from '@vercel/postgres';
 
 const pool = createPool({
-    connectionString: process.env.STORAGE_POSTGRES_URL
+    connectionString: process.env.STORAGE_POSTGRES_URL_NON_POOLING
 });
 
 export default async function handler(req, res) {
@@ -17,6 +17,6 @@ export default async function handler(req, res) {
         return res.status(200).json({ message: 'Users table initialized successfully!' });
     } catch (error) {
         console.error('Init error:', error);
-        return res.status(500).json({ error: 'Failed to initialize database. Make sure Vercel Postgres is connected.' });
+        return res.status(500).json({ error: 'Failed to initialize database.', details: error.message });
     }
 }
