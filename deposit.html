@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | NexusBet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0C12 0 4 5 4 12C4 16.5 7.5 19.5 10.5 21.5C9.5 19 9 17 9.5 15C10 13 12 11 12 11C12 11 14 13 14.5 15C15 17 14.5 19 13.5 21.5C16.5 19.5 20 16.5 20 12C20 5 12 0 12 0Z" fill="#00E775"/>
+                    <path d="M12 24C8 24 3 20 3 14C3 9 8 4 12 1C16 4 21 9 21 14C21 20 16 24 12 24ZM12 3C9 5.5 5 9.5 5 14C5 18.5 8.5 22 12 22C15.5 22 19 18.5 19 14C19 9.5 15 5.5 12 3Z" fill="#00E775" opacity="0.3"/>
+                </svg>
+            </div>
+            <button class="btn-menu-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div>
+
+        <div class="sidebar-tabs">
+            <button class="tab active">GAMES</button>
+            <button class="tab">SLOTS</button>
+        </div>
+
+        <div class="rakeback-card">
+            <div class="rb-text">
+                <span class="rb-title">AVAILABLE<br>RAKEBACK</span>
+                <span class="rb-amount">$0.05</span>
+            </div>
+            <div class="rb-icon">%</div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Home</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Live Support</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> Deposit</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Withdraw</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> VIP-Club</a>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <nav class="sidebar-nav secondary">
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> About Us</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> Promotions</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Sponsorships</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Licenses & Security</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg> Feedback About Us</a>
+            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> News</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="lang-btn">Language: 🇬🇧 EN</button>
+        </div>
+    </aside>
+
+    <div class="main-wrapper">
+        <!-- TOP NAVBAR -->
+        <header class="dashboard-navbar">
+            <button class="nav-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <nav class="nav-links">
+                <a href="#" class="active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg> Home</a>
+                <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
+                <a href="#"><img src="assets/hot_drop_gift.png" width="16" style="filter: grayscale(1);"> Bonuses</a>
+                <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> VIP-Club</a>
+            </nav>
+
+            <div class="nav-right">
+                <div class="user-balance">
+                    <span class="lbl">Your Balance</span>
+                    <span class="val" id="user-balance-display">$1000.00</span>
+                </div>
+                <button class="btn-deposit-green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> Deposit</button>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--text-grey)" stroke="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <div class="vip-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                    </div>
+                </div>
+                <button id="btn-logout" style="background: none; border: none; color: var(--text-grey); cursor: pointer; margin-left: 10px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <!-- MAIN CONTENT -->
+        <main class="dashboard-main deposit-main">
+            <h1 class="page-title">DEPOSIT</h1>
+
+            <div class="deposit-grid">
+                <!-- COLUMN 1: Account Sidebar -->
+                <div class="account-sidebar">
+                    <div class="account-profile">
+                        <div class="avatar"><svg width="24" height="24" viewBox="0 0 24 24" fill="var(--text-grey)" stroke="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+                        <span class="email">d24653762@...</span>
+                    </div>
+                    <nav class="account-nav">
+                        <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
+                        <a href="deposit.html" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> Deposit</a>
+                        <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Withdraw</a>
+                        <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Bonuses</a>
+                        <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Verification</a>
+                        <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Settings</a>
+                        <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg> Transactions</a>
+                    </nav>
+                    <div class="support-card">
+                        <h4>Have a Question?</h4>
+                        <p>Write us and our support team will help you</p>
+                        <button class="btn-support"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Support</button>
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: Method Selection -->
+                <div class="deposit-methods">
+                    <div class="dm-section">
+                        <h4>1. Select a Deposit Method</h4>
+                        <div class="method-tabs">
+                            <div class="method-tab active">
+                                <span class="title">CRYPTO</span>
+                                <span class="icons">🪙 🟢 🔴 20+</span>
+                            </div>
+                            <div class="method-tab">
+                                <span class="title">BANK CARD</span>
+                                <span class="icons">VISA Pay G Pay</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dm-section">
+                        <h4>2. Select Crypto to Deposit</h4>
+                        <div class="custom-select">
+                            <div class="selected-option">
+                                <span><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=024" width="16" alt="BTC"> Bitcoin <span class="curr">BTC</span></span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUMN 3: Payment Details -->
+                <div class="payment-details">
+                    <div class="pd-header">
+                        <div class="pd-title"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=024" width="20" alt="BTC"> Bitcoin <span class="curr">BTC</span></div>
+                        <div class="badge-selected">Selected</div>
+                    </div>
+
+                    <div class="qr-container">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bc1qs9r7z7egd3h7h4ay7486ngm4240glg6&bgcolor=fff&color=000" alt="QR Code" class="qr-image">
+                    </div>
+
+                    <div class="pd-section">
+                        <h4>3. Make Payment to your BTC address</h4>
+                        <div class="address-box">
+                            <input type="text" value="bc1qs9r7z7egd3h7h4ay7486ngm4240glg6" readonly id="btc-address">
+                            <button class="btn-copy" onclick="document.getElementById('btc-address').select(); document.execCommand('copy');"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                        </div>
+                    </div>
+
+                    <div class="disclaimer-box">
+                        Once the funds are sent and the transaction is confirmed, your account balance will be credited automatically. To ensure successful processing, please do not send less than the minimum deposit, as such transactions cannot be located and may result in a loss of funds. Please also remember to account for the blockchain network fee.
+                    </div>
+
+                    <div class="info-rows">
+                        <div class="info-row">
+                            <span>Minimum Deposit</span>
+                            <span class="val">$75.00</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Network</span>
+                            <span class="val">BTC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEPOSITS HISTORY -->
+            <div class="deposits-history">
+                <div class="dh-header">
+                    <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> Deposits History</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Currency</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>More</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data rows will populate here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://hzvlxpmkoefghsmfsvmo.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dmx4cG1rb2VmZ2hzbWZzdm1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyNzg3MzgsImV4cCI6MjA5OTg1NDczOH0.aBAEXlRuE6X0Xphr5KwRGBpWAql0lc6v73CdSw3g6OE';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function initDashboard() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) {
+                window.location.href = 'index.html'; // Redirect to login if not authenticated
+                return;
+            }
+
+            // Set Initial Balance for Testing
+            let balance = localStorage.getItem('nexus_balance');
+            if (!balance) {
+                balance = 1000.00;
+                localStorage.setItem('nexus_balance', balance);
+            }
+            document.getElementById('user-balance-display').textContent = '$' + parseFloat(balance).toFixed(2);
+        }
+
+        document.getElementById('btn-logout').addEventListener('click', async () => {
+            await supabaseClient.auth.signOut();
+            window.location.href = 'index.html';
+        });
+
+        initDashboard();
+    </script>
+</body>
+</html>

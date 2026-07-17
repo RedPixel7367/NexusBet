@@ -1,11 +1,64 @@
 :root {
-    --bg-main: #06080b;
-    --bg-card: #0d121b;
-    --bg-hero: #09121a;
-    --primary-green: #00E775;
-    --text-white: #ffffff;
-    --text-grey: #8a96a3;
-    --border-color: rgba(255, 255, 255, 0.03);
+    /* New greenColorDSGN variables */
+    --dark-bg: #0B0E1F;
+    --dark-sidebar: #121629;
+    --dark-backside: #1B2038;
+    --dark-block: #14192E;
+    --dark-on: #222842;
+    --dark-stroke: #2A3152;
+    --dark-lighter: #454B66;
+    --primary-title: #004221;
+    --primary-inactive: #01FF801A;
+    --primary-accent: #01FF80;
+    --primary-accent-s: #01CC66;
+    --old-title: #004221;
+    --old-inactive: #01FF801A;
+    --old-green: #01FF80;
+    --old-green-s: #01CC66;
+    --chat-circle-hover: #01CC66;
+    --blue-main: #3377FF;
+    --blue-inactive: #3377FF1A;
+    --light-title: #F5F6FF;
+    --light-desc: #7278A0;
+    --light-desc-translucent: #C2C8FF7F;
+    --footer-icons: #333858;
+    --footer-desc: #3F4360;
+    --auth-bottom: #3F4466;
+    --auth-white: #FFFFFF;
+    --red-main: #FF3355;
+    --red-main-s: #D62A47;
+    --orange-main: #FFA033;
+    --green-main: #01B85C;
+    --top-button-translucent: rgba(255, 255, 255, 0.4);
+    --review-date: rgba(173, 187, 255, 0.5);
+    --dark-avatar: #12162B;
+    --tooltip-gray: #424A6B;
+    --skeleton: #0E1123;
+    --news-style: #5C7AFF;
+    --game-dark: #090C1A;
+    --notif-dark: #262D4A;
+    --notif-light: #353C5C;
+    --coinflip-block: #2D3557;
+    --win-delim: #495175;
+    --plinko-color1: #DD33FF;
+    --plinko-color2: #9933FF;
+    --plinko-color3: #7733FF;
+    --plinko-color4: #5533FF;
+    --plinko-color5: #3333FF;
+    --plinko-color6: #3355FF;
+    --plinko-color7: #3377FF;
+    --promo-table-bg: #29304D;
+    --dark-delim: #394266;
+    --link-color: #9BA1CC;
+
+    /* Map old variables to new scheme */
+    --bg-main: var(--dark-bg);
+    --bg-card: var(--dark-block);
+    --bg-hero: var(--dark-bg);
+    --primary-green: var(--primary-accent);
+    --text-white: var(--light-title);
+    --text-grey: var(--light-desc);
+    --border-color: var(--dark-stroke);
 }
 
 * {
@@ -1015,4 +1068,377 @@ main {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+/* DEPOSIT PAGE STYLES */
+.deposit-main {
+    padding: 30px 40px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--light-title);
+    letter-spacing: -0.5px;
+}
+
+.deposit-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Column 1 */
+.account-sidebar {
+    background-color: var(--dark-sidebar);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.account-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.account-profile .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--dark-block);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-profile .email {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--light-title);
+}
+
+.account-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.account-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: var(--light-desc);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.account-nav a:hover, .account-nav a.active {
+    background-color: var(--dark-block);
+    color: var(--light-title);
+}
+
+.support-card {
+    background-color: var(--dark-block);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: auto;
+}
+
+.support-card h4 {
+    font-size: 14px;
+    color: var(--light-title);
+    margin-bottom: 8px;
+}
+
+.support-card p {
+    font-size: 12px;
+    color: var(--light-desc);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.btn-support {
+    width: 100%;
+    background-color: var(--dark-lighter);
+    color: var(--light-title);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* Column 2 */
+.deposit-methods {
+    background-color: var(--dark-sidebar);
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.dm-section h4 {
+    font-size: 14px;
+    color: var(--light-title);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.method-tabs {
+    display: flex;
+    gap: 12px;
+}
+
+.method-tab {
+    flex: 1;
+    background-color: var(--dark-block);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.method-tab.active {
+    border-color: var(--primary-accent);
+    background-color: rgba(1, 255, 128, 0.05);
+}
+
+.method-tab .title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--light-title);
+}
+
+.method-tab .icons {
+    font-size: 12px;
+    color: var(--light-desc);
+}
+
+.custom-select {
+    background-color: var(--dark-block);
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+}
+
+.selected-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--light-title);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.selected-option span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.selected-option .curr {
+    color: var(--light-desc);
+    font-weight: 500;
+}
+
+/* Column 3 */
+.payment-details {
+    background-color: var(--dark-sidebar);
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.pd-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.pd-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--light-title);
+}
+
+.pd-title .curr {
+    color: var(--light-desc);
+    font-weight: 500;
+}
+
+.badge-selected {
+    background-color: rgba(1, 255, 128, 0.1);
+    color: var(--primary-accent);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.qr-container {
+    background-color: #fff;
+    width: 200px;
+    height: 200px;
+    border-radius: 16px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pd-section h4 {
+    font-size: 14px;
+    color: var(--light-title);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.address-box {
+    display: flex;
+    background-color: var(--dark-block);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+.address-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--light-title);
+    font-size: 14px;
+    padding: 12px 16px;
+    outline: none;
+    font-family: monospace;
+}
+
+.btn-copy {
+    background-color: var(--dark-lighter);
+    border: none;
+    color: var(--light-title);
+    width: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-copy:hover {
+    background-color: var(--primary-accent);
+    color: var(--dark-bg);
+}
+
+.disclaimer-box {
+    background-color: var(--dark-block);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--light-desc);
+    margin-bottom: 20px;
+}
+
+.info-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--light-desc);
+    border-bottom: 1px dashed var(--dark-stroke);
+    padding-bottom: 8px;
+}
+
+.info-row .val {
+    color: var(--light-title);
+    font-weight: 600;
+}
+
+/* Deposits History Table */
+.deposits-history {
+    background-color: var(--dark-sidebar);
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.dh-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dh-header h2 {
+    font-size: 18px;
+    color: var(--light-title);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.view-all {
+    color: var(--primary-accent);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.history-table th {
+    text-align: left;
+    color: var(--light-desc);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--dark-stroke);
+}
+
+.history-table td {
+    padding: 16px 0;
+    color: var(--light-title);
+    font-size: 14px;
+    border-bottom: 1px solid var(--dark-block);
 }
