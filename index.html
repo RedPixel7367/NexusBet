@@ -276,7 +276,16 @@
         // Supabase Initialization
         const supabaseUrl = 'https://hzvlxpmkoefghsmfsvmo.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6dmx4cG1rb2VmZ2hzbWZzdm1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQyNzg3MzgsImV4cCI6MjA5OTg1NDczOH0.aBAEXlRuE6X0Xphr5KwRGBpWAql0lc6v73CdSw3g6OE';
-        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Check active session
+        async function checkSession() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) {
+                window.location.href = 'dashboard.html';
+            }
+        }
+        checkSession();
 
         // Handle Login
         document.getElementById('login-form').addEventListener('submit', async (e) => {
@@ -286,6 +295,7 @@
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             const errDiv = document.getElementById('login-error');
+            errDiv.style.color = '#ef4444';
             errDiv.textContent = '';
             
             const { data, error } = await supabaseClient.auth.signInWithPassword({
@@ -295,11 +305,14 @@
 
             if (error) {
                 errDiv.textContent = error.message;
+                btn.textContent = 'Log In';
             } else {
-                alert('Logged in successfully!');
-                closeModal();
+                errDiv.style.color = 'var(--primary-green)';
+                errDiv.textContent = 'Logged in successfully! Redirecting...';
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
             }
-            btn.textContent = 'Log In';
         });
 
         // Handle Register
@@ -310,6 +323,7 @@
             const password = document.getElementById('reg-password').value;
             const confirm = document.getElementById('reg-confirm').value;
             const errDiv = document.getElementById('register-error');
+            errDiv.style.color = '#ef4444';
             errDiv.textContent = '';
 
             if (password !== confirm) {
@@ -326,11 +340,14 @@
 
             if (error) {
                 errDiv.textContent = error.message;
+                btn.textContent = 'Create Account';
             } else {
-                alert('Registered successfully!');
-                switchView('login');
+                errDiv.style.color = 'var(--primary-green)';
+                errDiv.textContent = 'Registered successfully! Logging you in...';
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
             }
-            btn.textContent = 'Create Account';
         });
 
         btnClose.addEventListener('click', closeModal);
