@@ -40,11 +40,16 @@ if not soup.find("link", href="styles.css"):
     style_link = soup.new_tag("link", rel="stylesheet", href="styles.css")
     soup.head.append(style_link)
 
-# Rewrite image src and links
+# Rewrite image src, link hrefs, and anchor tags
 for img in soup.find_all("img"):
     src = img.get("src")
     if src and src.startswith("/"):
         img["src"] = "https://kasowin.com" + src
+
+for link in soup.find_all("link"):
+    href = link.get("href")
+    if href and href.startswith("/") and not href == "styles.css":
+        link["href"] = "https://kasowin.com" + href
 
 for a in soup.find_all("a"):
     href = a.get("href")
