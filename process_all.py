@@ -25,6 +25,11 @@ for raw_file in raw_files:
     else:
         combined_html = f"<!DOCTYPE html><html translate='no'>{str(head_tag)}{file_html}</html>"
         
+    # Overwrite the user's hardcoded balance to $1000.00
+    combined_html = combined_html.replace("$2498<span>.54</span>", "$1000<span>.00</span>")
+    combined_html = combined_html.replace("$2498.54", "$1000.00")
+    combined_html = combined_html.replace("2498.54", "1000.00")
+        
     soup = BeautifulSoup(combined_html, "html.parser")
 
     for s in soup.find_all("script"):
