@@ -61,18 +61,35 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
     // Dropdown toggle logic
     const dropdowns = document.querySelectorAll(".Dropdown2_main__oaGd2");
     dropdowns.forEach(dropdown => {
+        // Make the parent relative so the absolute menu positions correctly below it
+        dropdown.style.position = "relative";
+        
         const input = dropdown.querySelector(".Dropdown2_input__c_MRs");
         const menu = dropdown.querySelector(".Dropdown2_dropdown__ULp_Y");
+        const menuInner = dropdown.querySelector(".Dropdown2_dropdownIn__MhXbF");
+        
         if (input && menu) {
-            // Force hidden and absolute positioning initially
+            // Force hidden and proper positioning initially
             menu.style.display = "none";
             menu.style.position = "absolute";
-            menu.style.zIndex = "9999";
+            menu.style.top = "100%";
+            menu.style.left = "0";
+            menu.style.marginTop = "8px";
+            menu.style.zIndex = "99999";
             menu.style.width = "100%";
             menu.style.opacity = "1";
             menu.style.visibility = "visible";
+            menu.style.pointerEvents = "auto";
+            
+            // Fix scrolling on the inner container
+            if (menuInner) {
+                menuInner.style.maxHeight = "280px";
+                menuInner.style.overflowY = "auto";
+                menuInner.style.pointerEvents = "auto";
+            }
             
             input.addEventListener("click", (e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 const isVisible = menu.style.display === "block";
                 
@@ -87,7 +104,11 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
             // Handle option selection
             const options = menu.querySelectorAll(".Dropdown2_dropdownEl__tTIhL");
             options.forEach(opt => {
+                opt.style.cursor = "pointer";
+                opt.style.pointerEvents = "auto";
+                
                 opt.addEventListener("click", (e) => {
+                    e.preventDefault();
                     e.stopPropagation();
                     const optContent = opt.querySelector(".Dropdown2_contentIn__kRnA_");
                     const inputContent = input.querySelector(".Dropdown2_contentIn__kRnA_");
