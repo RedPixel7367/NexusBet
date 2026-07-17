@@ -115,6 +115,7 @@ for raw_file in raw_files:
     for logout_btn in soup.find_all("div", class_="Profile_logout__xJo32"):
         logout_btn.name = "a"
         logout_btn["href"] = "index.html"
+        logout_btn["onclick"] = "localStorage.clear(); sessionStorage.clear();"
         logout_btn["style"] = logout_btn.get("style", "") + " text-decoration: none; color: inherit; display: flex; cursor: pointer; align-items: center; justify-content: center;"
 
     # Fix header <button> elements (Home, Profile, Bonuses, VIP, Deposit)
