@@ -199,6 +199,34 @@ for raw_file in raw_files:
                     const inputContent = input.querySelector(".Dropdown2_contentIn__kRnA_");
                     if (optContent && inputContent) {
                         inputContent.innerHTML = optContent.innerHTML;
+                        
+                        // Fake update of crypto address and token for mock
+                        const currencyTitle = optContent.querySelector(".WalletProfile_curTitle__eDWCV");
+                        if (currencyTitle) {
+                            const name = currencyTitle.textContent.trim().toLowerCase();
+                            const addressInput = document.querySelector("input.Input_input__YXnAC.WalletProfile_blockBg__oDaBr");
+                            const qrToken = document.querySelector(".WalletProfile_qrToken__aNGLx");
+                            
+                            const addresses = {
+                                "bitcoin": "bc1qs9r7z7egd3h7h4ay7486ngm4240glg675kuh8n",
+                                "ethereum": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
+                                "litecoin": "ltc1qw3y7z7egd3h7h4ay7486ngm4240glg675abcd",
+                                "tether": "TXa4t8h4ay7486ngm4240glg675kuh8nXYZ123",
+                                "dogecoin": "D8h4ay7486ngm4240glg675kuh8nABCXYZ"
+                            };
+                            
+                            if (addressInput) {
+                                addressInput.value = addresses[name] || addresses["bitcoin"];
+                            }
+                            
+                            if (qrToken) {
+                                const codeObj = optContent.querySelector(".WalletProfile_curCode__Rk9Oh");
+                                if (codeObj) {
+                                    const code = codeObj.textContent.trim().toLowerCase();
+                                    qrToken.src = `https://kasowin.com/greenColorDSGN/mix/crypto/${code}.svg`;
+                                }
+                            }
+                        }
                     }
                     menu.style.display = "none";
                 });
