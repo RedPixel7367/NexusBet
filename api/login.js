@@ -1,5 +1,9 @@
-import { sql } from '@vercel/postgres';
+import { createPool } from '@vercel/postgres';
 import bcrypt from 'bcryptjs';
+
+const pool = createPool({
+    connectionString: process.env.STORAGE_POSTGRES_URL
+});
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -12,7 +16,7 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Email and password are required' });
         }
 
-        const { rows } = await sql`SELECT password_hash FROM users WHERE email = ${email}`;
+        const { rows } = await pool.sql`SELECT password_hash FROM users WHERE email = ${email}`;
         if (rows.length === 0) {
             return res.status(400).json({ error: 'User not found' });
         }

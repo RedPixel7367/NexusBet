@@ -1,8 +1,12 @@
-import { sql } from '@vercel/postgres';
+import { createPool } from '@vercel/postgres';
+
+const pool = createPool({
+    connectionString: process.env.STORAGE_POSTGRES_URL
+});
 
 export default async function handler(req, res) {
     try {
-        await sql`
+        await pool.sql`
             CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,
                 email VARCHAR(255) UNIQUE NOT NULL,
