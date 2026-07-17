@@ -111,6 +111,12 @@ for raw_file in raw_files:
             profile_nav["href"] = button_mapping[span.text]
             profile_nav["style"] = "text-decoration: none; color: inherit; display: flex; cursor: pointer;"
 
+    # Fix Logout button
+    for logout_btn in soup.find_all("div", class_="Profile_logout__xJo32"):
+        logout_btn.name = "a"
+        logout_btn["href"] = "https://kasowin.com"
+        logout_btn["style"] = logout_btn.get("style", "") + " text-decoration: none; color: inherit; display: flex; cursor: pointer; align-items: center; justify-content: center;"
+
     # Fix header <button> elements (Home, Profile, Bonuses, VIP, Deposit)
     for btn in soup.find_all("button"):
         btn_text = btn.text.strip()
